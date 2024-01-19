@@ -26,6 +26,13 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          foreignKey: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
