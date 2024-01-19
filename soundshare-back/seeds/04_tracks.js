@@ -3,6 +3,7 @@ const Track = models.Track;
 
 const { faker } = require('@faker-js/faker');
 
+
 const track = Track.create({
     title: faker.music.songName(),
     description: faker.lorem.paragraph(),
@@ -10,5 +11,5 @@ const track = Track.create({
     music: faker.system.fileExt('audio/mpeg'),
     userId: 1
 })
-.then((tracks) => { console.log(tracks); })
+.then((track) => { track.addGenre(1) })
 .catch((error) => { console.log(error); })
