@@ -18,8 +18,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/resources', resourcesRouter);
-app.use('/genres', genresRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/resources', resourcesRouter);
+app.use('/api/v1/genres', genresRouter);
 
 module.exports = app;
