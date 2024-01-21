@@ -3,6 +3,7 @@ const Resource = models.Resource;
 
 module.exports = {
     index: function(req, res, next) {
+        console.log("request ", req)
         Resource.findAll({include: models.User})
             .then((resources) => { res.json({ resources }); })
             .catch((error) => { res.status(500).json({error}) })
