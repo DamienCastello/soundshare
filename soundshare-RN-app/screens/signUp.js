@@ -4,10 +4,11 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import React, {createRef, useState} from 'react';
 
@@ -28,9 +29,11 @@ const RegisterScreen = (props) => {
   ] = useState(false);
 
   const emailInputRef = createRef();
-  const ageInputRef = createRef();
-  const addressInputRef = createRef();
   const passwordInputRef = createRef();
+  const isArtistSwitchRef = createRef();
+  const isAvatarRef = createRef();
+
+  const toggleSwitch = () => setIsArtist(previousState => !previousState);
 
   const handleSubmitButton = () => {
     setErrortext('');
@@ -50,9 +53,10 @@ const RegisterScreen = (props) => {
       alert('Please fill Password');
       return;
     }
+
     //Show Loader
     setLoading(true);
-    var dataToSend = {
+    const dataToSend = {
       name: userName,
       email: userEmail,
       isArtist: isArtist,
@@ -61,25 +65,23 @@ const RegisterScreen = (props) => {
     };
 
     //TODO: Encrypt password with JWT
+    console.log("user to create (frontside): ", dataToSend)
     
-    axios.post('http://localhost:3000/api/users/register', JSON.stringify(dataToSend), { headers: {
+    axios.post('http://localhost:3000/api/v1/auth/signup/user', dataToSend, { headers: {
         //Header Defination
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         //TODO: Improve validation
         'Accept': '*/*'
       }}
     )
-      .then((response) => response.json())
       .then((responseJson) => {
-        //Hide Loader
-        setLoading(false);
-        console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
+        console.log("check responseJson.status", responseJson.status)
+        if (responseJson.status === 200) {
           setIsRegistraionSuccess(true);
-          console.log(
-            'Registration Successful. Please Login to proceed'
-          );
+          //Hide Loader
+          setLoading(false);
+
         } else {
           setErrortext(responseJson.msg);
         }
@@ -99,7 +101,7 @@ const RegisterScreen = (props) => {
           justifyContent: 'center',
         }}>
         <Image
-          source={require('../assets/soundshare.jpg')}
+          source={require('../assets/soundshare-blue.jpg')}
           style={{
             height: 150,
             resizeMode: 'contain',
@@ -112,7 +114,7 @@ const RegisterScreen = (props) => {
         <TouchableOpacity
           style={styles.buttonStyle}
           activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('LoginScreen')}>
+          onPress={() => props.navigation.navigate('SignIn')}>
           <Text style={styles.buttonTextStyle}>Login Now</Text>
         </TouchableOpacity>
       </View>
@@ -129,7 +131,7 @@ const RegisterScreen = (props) => {
         }}>
         <View style={{alignItems: 'center'}}>
           <Image
-            source={require('../assets/soundshare.jpg')}
+            source={require('../assets/soundshare-blue.jpg')}
             style={{
               width: '50%',
               height: 100,
@@ -184,44 +186,29 @@ const RegisterScreen = (props) => {
               returnKeyType="next"
               secureTextEntry={true}
               onSubmitEditing={() =>
-                ageInputRef.current &&
-                ageInputRef.current.focus()
+                isArtistSwitchRef.current &&
+                isArtistSwitchRef.current.focus()
               }
               blurOnSubmit={false}
             />
           </View>
           <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={(UserAge) => setUserAge(UserAge)}
-              underlineColorAndroid="#f000"
-              placeholder="Enter Age"
-              placeholderTextColor="#8b9cb5"
-              keyboardType="numeric"
-              ref={ageInputRef}
-              returnKeyType="next"
-              onSubmitEditing={() =>
-                addressInputRef.current &&
-                addressInputRef.current.focus()
-              }
-              blurOnSubmit={false}
-            />
+          <Text style={{color:'#f4f3f4', marginRight: 15}}>You are a music producer</Text>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={isArtist ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            ref={isArtistSwitchRef}
+            // onSubmitEditing={() =>
+            //   //isAvatarRef.current &&
+            //   //isAvatarRef.current.focus()
+            // }
+            onValueChange={toggleSwitch}
+            value={isArtist}
+          />
           </View>
           <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={(UserAddress) =>
-                setUserAddress(UserAddress)
-              }
-              underlineColorAndroid="#f000"
-              placeholder="Enter Address"
-              placeholderTextColor="#8b9cb5"
-              autoCapitalize="sentences"
-              ref={addressInputRef}
-              returnKeyType="next"
-              onSubmitEditing={Keyboard.dismiss}
-              blurOnSubmit={false}
-            />
+           {/* Add expo image picker */}
           </View>
           {errortext != '' ? (
             <Text style={styles.errorTextStyle}>

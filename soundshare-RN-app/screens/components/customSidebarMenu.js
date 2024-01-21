@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -9,6 +9,7 @@ import React from 'react';
 
 const CustomSidebarMenu = (props) => {
   return (
+    <SafeAreaView style={{flex: 1}}>
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
@@ -31,7 +32,11 @@ const CustomSidebarMenu = (props) => {
             </Text>
           }
           onPress={() => {
+            // TODO: delete this code when Alert is fixed 
+            // TODO: clear zustand user token
             props.navigation.toggleDrawer();
+            props.navigation.navigate('Auth');
+            
             Alert.alert(
               'Logout',
               'Are you sure? You want to logout?',
@@ -45,17 +50,21 @@ const CustomSidebarMenu = (props) => {
                 {
                   text: 'Confirm',
                   onPress: () => {
-                    //TODO: clear user_id from zustand store
-                    props.navigation.replace('Auth');
+                    // TODO: clear zustand user token
+                    props.navigation.toggleDrawer();
+                    props.navigation.navigate('Auth');
                   },
                 },
               ],
               {cancelable: false},
             );
+            //props.navigation.toggleDrawer();
+
           }}
         />
       </DrawerContentScrollView>
     </View>
+    </SafeAreaView>
   );
 };
 
