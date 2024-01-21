@@ -12,6 +12,7 @@ import {
 import React, {createRef, useState} from 'react';
 
 import Loader from './components/Loader';
+import axios from 'axios';
 
 const LoginScreen = ({navigation}) => {
   const [userEmail, setUserEmail] = useState('');
@@ -33,32 +34,22 @@ const LoginScreen = ({navigation}) => {
     }
     setLoading(true);
     let dataToSend = {email: userEmail, password: userPassword};
-    let formBody = [];
-    for (let key in dataToSend) {
-      let encodedKey = encodeURIComponent(key);
-      let encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
+    
+    //Show Loader
+    setLoading(true);
 
-    fetch('http://localhost:3000/api/user/login', {
-      method: 'POST',
-      body: formBody,
-      headers: {
-        //Header Defination
-        'Content-Type':
-        'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
+    axios.post('http://localhost:3000/api/v1/auth/signin/user', dataToSend, { headers: {
+      //Header Defination
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      //TODO: Improve validation
+      'Accept': '*/*'
+    }})
       .then((responseJson) => {
         //Hide Loader
         setLoading(false);
-        console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
+        if (responseJson.status === 200) {
           //TODO: store user_id with zustand
-          console.log(responseJson.data.email);
           navigation.replace('DrawerNavigationRoutes');
         } else {
           setErrortext(responseJson.msg);
@@ -86,7 +77,7 @@ const LoginScreen = ({navigation}) => {
           <KeyboardAvoidingView enabled>
             <View style={{alignItems: 'center'}}>
               <Image
-                source={require('../assets/soundshare.jpg')}
+                source={require('../assets/soundshare-blue.jpg')}
                 style={{
                   width: '50%',
                   height: 100,

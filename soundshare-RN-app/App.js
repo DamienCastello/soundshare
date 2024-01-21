@@ -11,6 +11,7 @@ const Stack = createNativeStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
+  console.log("enter in auth")
   return (
     <Stack.Navigator initialRouteName="SignIn">
       <Stack.Screen name="SignIn" component={SignInScreen} />
