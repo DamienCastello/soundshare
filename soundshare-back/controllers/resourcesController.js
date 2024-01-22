@@ -15,8 +15,7 @@ module.exports = {
     },
     show: function(req, res, next) {
         Resource.findAll({
-            offset: 0,
-            limit: 10,
+            id: req.query.id,
             include: [models.User],
         })
         .then((resources) => {

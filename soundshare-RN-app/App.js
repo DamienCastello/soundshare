@@ -6,6 +6,8 @@ import SignInScreen from './screens/signIn';
 import SignUpScreen from './screens/signUp';
 import SplashScreen from './screens/splash';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {useContextStore} from './store/useContext';
+import { useEffect } from 'react';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +47,11 @@ const Auth = () => {
 };
 
 const App = () => {
+  const isModalOpen = useContextStore((value) => value)
+
+  useEffect(() => {
+    console.log("changer ! ", isModalOpen)
+  }, [isModalOpen])
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen">
