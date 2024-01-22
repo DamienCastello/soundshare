@@ -1,6 +1,7 @@
 import CustomSidebarMenu from './components/customSidebarMenu';
 import DetailsScreen from './drawerScreens/details';
 import HomeScreen from './drawerScreens/home';
+import AboutScreen from './drawerScreens/aboutUs';
 import NavigationDrawerHeader from './components/navigationDrawerHeader';
 import React from 'react';
 import ResourcesScreen from './drawerScreens/resources';
@@ -123,6 +124,33 @@ const settingScreenStack = ({navigation}) => {
   );
 };
 
+const aboutScreenStack = ({navigation}) => {
+  return (
+    <Stack.Navigator
+      initialRouteName="AboutScreen"
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerHeader navigationProps={navigation} />
+        ),
+        headerStyle: {
+          backgroundColor: '#307ecc',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen
+        name="AboutScreen"
+        component={AboutScreen}
+        options={{
+          title: 'About Us',
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const DrawerNavigatorRoutes = (props) => {
   return (
     <Drawer.Navigator
@@ -150,6 +178,11 @@ const DrawerNavigatorRoutes = (props) => {
         name="settingScreenStack"
         options={{drawerLabel: 'Setting Screen'}}
         component={settingScreenStack}
+      />
+      <Drawer.Screen
+        name="aboutScreenStack"
+        options={{drawerLabel: 'About Screen'}}
+        component={aboutScreenStack}
       />
     </Drawer.Navigator>
   );

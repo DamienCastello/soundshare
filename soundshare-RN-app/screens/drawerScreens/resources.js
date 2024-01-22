@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View} from 'react-native';
 
 import axios from 'axios';
 
+
 const ResourcesScreen = ({navigation}) => {
   useEffect(() => {
     axios.get("http://localhost:3000/api/v1/resources")

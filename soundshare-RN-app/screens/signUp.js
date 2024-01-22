@@ -19,7 +19,7 @@ const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [isArtist, setIsArtist] = useState('');
+  const [isArtist, setIsArtist] = useState(false);
   const [avatar, setAvatar] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
@@ -43,10 +43,6 @@ const RegisterScreen = (props) => {
     }
     if (!userEmail) {
       alert('Please fill Email');
-      return;
-    }
-    if (!isArtist) {
-      alert('Please fill Address');
       return;
     }
     if (!userPassword) {
