@@ -8,7 +8,7 @@ for(let i = 0; i < 1000; i++){
         title: faker.lorem.sentence(),
         description: faker.lorem.paragraph(),
         image: faker.image.avatar(),
-        userId: 21
+        userId: 1
     })
     .then((resource) => { console.log(resource); })
     .catch((error) => { console.log(error); })
