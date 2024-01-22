@@ -13,14 +13,26 @@ const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
     <Stack.Navigator initialRouteName="SignIn">
-      <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen 
+          name="SignIn" 
+          component={SignInScreen} 
+          options={{
+            title: 'Log In', //Set Header Title
+            headerStyle: {
+              backgroundColor: '#647a8f', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+        }}/>
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
         options={{
           title: 'Register', //Set Header Title
           headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
+            backgroundColor: '#647a8f', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {

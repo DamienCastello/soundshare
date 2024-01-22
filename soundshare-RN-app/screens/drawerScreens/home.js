@@ -21,33 +21,17 @@ const HomeScreen = ({navigation}) => {
               You are a music producer ?
           </Text>
           <Text style={{
-              color: '#FFFFFF',
+              color: 'black',
               textAlign: 'center',
               fontWeight: 'bold',
               fontSize: 14,
               alignSelf: 'center',
               padding: 10,
             }}
-              onPress={() => navigation.navigate('ResourcesScreen')}>
+              onPress={() => navigation.navigate('resourcesScreen')}>
                 GO Resource
           </Text>
         </View>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          Splash, Login and Register Example{'\n'}React Native
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          www.aboutreact.com
-        </Text>
       </View>
     </SafeAreaView>
   );

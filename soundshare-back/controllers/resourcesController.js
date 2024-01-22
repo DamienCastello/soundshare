@@ -3,15 +3,28 @@ const Resource = models.Resource;
 
 module.exports = {
     index: function(req, res, next) {
-        console.log("request ", req)
-        Resource.findAll({include: models.User})
+        const offset = parseInt(req.query.offset) || 0; // Assurez-vous que les valeurs d'offset et de limit sont des nombres
+        const limit = parseInt(req.query.limit) || 10; // Vous pouvez ajuster la valeur par défaut selon vos besoins
+        Resource.findAll({
+            offset: offset,
+            limit: limit,
+            include: [models.User],
+            })
             .then((resources) => { res.json({ resources }); })
             .catch((error) => { res.status(500).json({error}) })
     },
     show: function(req, res, next) {
-        Resource.findByPk(req.params.id, {include: models.User})
-            .then((resource) => { res.json({ resource }); })
-            .catch((error) => { res.status(500).json({error}) })
+        Resource.findAll({
+            offset: 0,
+            limit: 10,
+            include: [models.User],
+        })
+        .then((resources) => {
+            res.json({ resources });
+        })
+        .catch((error) => {
+            res.status(500).json({ error });
+        });
     },
     create: function(req, res, next) {
         Resource.create({
