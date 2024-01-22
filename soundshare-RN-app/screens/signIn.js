@@ -15,8 +15,8 @@ import Loader from './components/Loader';
 import axios from 'axios';
 
 const LoginScreen = ({navigation}) => {
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [userEmail, setUserEmail] = useState('gamma@gmail.com');
+  const [userPassword, setUserPassword] = useState('00000000');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
@@ -24,14 +24,6 @@ const LoginScreen = ({navigation}) => {
 
   const handleSubmitPress = () => {
     setErrortext('');
-    if (!userEmail) {
-      alert('Please fill Email');
-      return;
-    }
-    if (!userPassword) {
-      alert('Please fill Password');
-      return;
-    }
     setLoading(true);
     let dataToSend = {email: userEmail, password: userPassword};
     
@@ -97,6 +89,7 @@ const LoginScreen = ({navigation}) => {
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
+                defaultValue={userEmail}
                 onSubmitEditing={() =>
                   passwordInputRef.current &&
                   passwordInputRef.current.focus()
@@ -114,6 +107,7 @@ const LoginScreen = ({navigation}) => {
                 placeholder="Enter Password" //12345
                 placeholderTextColor="#8b9cb5"
                 keyboardType="default"
+                defaultValue={userPassword}
                 ref={passwordInputRef}
                 onSubmitEditing={Keyboard.dismiss}
                 blurOnSubmit={false}

@@ -1,15 +1,13 @@
+import AboutScreen from './drawerScreens/aboutUs';
 import CustomSidebarMenu from './components/customSidebarMenu';
 import DetailsScreen from './drawerScreens/details';
 import HomeScreen from './drawerScreens/home';
-import AboutScreen from './drawerScreens/aboutUs';
 import NavigationDrawerHeader from './components/navigationDrawerHeader';
 import React from 'react';
 import ResourcesScreen from './drawerScreens/resources';
 import SettingsScreen from './drawerScreens/settings';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createStackNavigator} from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigatorRoutes = (props) => {
@@ -27,22 +25,22 @@ const DrawerNavigatorRoutes = (props) => {
       drawerContent={CustomSidebarMenu}>
       <Drawer.Screen
         name="homeScreen"
-        options={{drawerLabel: 'Home Screen'}}
+        options={{drawerLabel: 'Home Screen', headerStyle: {backgroundColor: '#647a8f'}}}
         component={HomeScreen}
       />
       <Drawer.Screen
         name="resourcesScreen"
-        options={{drawerLabel: 'Resources Screen'}}
+        options={{drawerLabel: 'Resources Screen', headerStyle: {backgroundColor: '#647a8f'}}}
         component={ResourcesScreen}
       />
       <Drawer.Screen
         name="settingScreen"
-        options={{drawerLabel: 'Setting Screen'}}
+        options={{drawerLabel: 'Setting Screen', headerStyle: {backgroundColor: '#647a8f'}}}
         component={SettingsScreen}
       />
       <Drawer.Screen
         name="aboutScreen"
-        options={{drawerLabel: 'About Screen'}}
+        options={{drawerLabel: 'About Screen', headerStyle: {backgroundColor: '#647a8f'}}}
         component={AboutScreen}
       />
     </Drawer.Navigator>
