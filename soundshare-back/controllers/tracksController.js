@@ -1,57 +1,54 @@
 const models = require('../models');
-const Resource = models.Resource;
+const Track = models.Track;
 
 module.exports = {
     index: function(req, res, next) {
-        const offset = parseInt(req.query.offset) || 0; // Assurez-vous que les valeurs d'offset et de limit sont des nombres
-        const limit = parseInt(req.query.limit) || 10; // Vous pouvez ajuster la valeur par défaut selon vos besoins
-        Resource.findAll({
+        const offset = parseInt(req.query.offset) || 0;
+        const limit = parseInt(req.query.limit) || 10;
+        Track.findAll({
             offset: offset,
             limit: limit,
             include: [models.User],
             })
-            .then((resources) => { res.json({ resources }); })
+            .then((tracks) => { res.json({ tracks }); })
             .catch((error) => { res.status(500).json({error}) })
     },
     show: function(req, res, next) {
-        Resource.findAll({
-            offset: 0,
-            limit: 10,
-            include: [models.User],
-        })
-        .then((resources) => {
-            res.json({ resources });
+        Track.findByPk(req.params.id)
+        .then((track) => {
+            res.json({ track });
         })
         .catch((error) => {
             res.status(500).json({ error });
         });
     },
     create: function(req, res, next) {
-        Resource.create({
+        Track.create({
             title: req.body.title,
             description: req.body.description,
             image: req.body.image,
+            music: req.body.music,
             userId: req.body.userId
         })
-            .then((resource) => { res.json({ resource }); })
+            .then((track) => { res.json({ track }); })
             .catch((error) => { res.status(500).json({error}) })
     },
     update: function(req, res, next) {
-        Resource.findByPk(req.params.id)
-            .then((resource) => { resource.update({
+        Track.findByPk(req.params.id)
+            .then((track) => { track.update({
                 title: req.body.title,
                 description: req.body.description,
                 image: req.body.image,
                 userId: req.body.userId
             })
-                .then((updatedResource) => { res.json({ updatedResource }); })
+                .then((updatedTrack) => { res.json({ updatedTrack }); })
                 .catch((error) => { res.status(500).json({error}) })
             })
             .catch((error) => { res.status(500).json({error}) })
     },
     delete: function(req, res, next) {
-        Resource.findByPk(req.params.id)
-            .then((resource) => { resource.destroy() })
+        Track.findByPk(req.params.id)
+            .then((track) => { track.destroy() })
             .catch((error) => { res.status(500).json({error}) })
     }
 }
