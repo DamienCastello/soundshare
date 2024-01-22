@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-const ResourcesScreen = ({ navigation }) => {
+const ResourcesScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [offset, setOffset] = useState(1);
@@ -28,7 +28,7 @@ const ResourcesScreen = ({ navigation }) => {
       axios('http://localhost:3000/api/v1/resources', {
         params: {
           offset: offset,
-          limit: 50,
+          limit: 10,
         },
       })
         .then((responseJson) => {
@@ -83,7 +83,7 @@ const ResourcesScreen = ({ navigation }) => {
   };
 
   const getItem = (item) => {
-    alert('Id : ' + item.id + ' Title : ' + item.title);
+    navigation.navigate('Resource show')
   };
 
   return (

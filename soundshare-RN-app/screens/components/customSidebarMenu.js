@@ -6,8 +6,13 @@ import {
 } from '@react-navigation/drawer';
 
 import React from 'react';
+import { useContextStore } from '../../store/useContext';
 
 const CustomSidebarMenu = (props) => {
+const isModalOpen = useContextStore((state) => state.isModalOpen)
+const setIsModalOpen = useContextStore((state) => state.setIsModalOpen);
+
+
   return (
     <SafeAreaView style={{flex: 1}}>
     <View style={stylesSidebar.sideMenuContainer}>
@@ -25,9 +30,22 @@ const CustomSidebarMenu = (props) => {
 
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
+        <DrawerItem 
+            onPress={() => {
+              console.log("check before : ", isModalOpen);
+              setIsModalOpen(isModalOpen); // Utilisez la valeur actuelle pour inverser
+              console.log("check after : ", isModalOpen);
+
+            }}
+            label={() => 
+              <Text style={{color: 'black'}}>
+                Partager
+              </Text>
+            }
+        />
         <DrawerItem
-          label={({color}) => 
-            <Text style={{color: '#d8d8d8'}}>
+          label={() => 
+            <Text style={{color: 'black'}}>
               Logout
             </Text>
           }
@@ -66,7 +84,7 @@ const CustomSidebarMenu = (props) => {
     </View>
     </SafeAreaView>
   );
-};
+}
 
 export default CustomSidebarMenu;
 
