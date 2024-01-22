@@ -26,22 +26,22 @@ const DrawerNavigatorRoutes = (props) => {
       screenOptions={{headerShown: true}}
       drawerContent={CustomSidebarMenu}>
       <Drawer.Screen
-        name="Home"
+        name="homeScreen"
         options={{drawerLabel: 'Home Screen'}}
         component={HomeScreen}
       />
       <Drawer.Screen
-        name="Resources"
+        name="resourcesScreen"
         options={{drawerLabel: 'Resources Screen'}}
         component={ResourcesScreen}
       />
       <Drawer.Screen
-        name="Settings"
+        name="settingScreen"
         options={{drawerLabel: 'Setting Screen'}}
         component={SettingsScreen}
       />
       <Drawer.Screen
-        name="About Us"
+        name="aboutScreen"
         options={{drawerLabel: 'About Screen'}}
         component={AboutScreen}
       />
