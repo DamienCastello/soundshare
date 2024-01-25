@@ -28,7 +28,7 @@ const ResourcesScreen = ({navigation}) => {
       axios('http://localhost:3000/api/v1/resources', {
         params: {
           offset: offset,
-          limit: 10,
+          limit: 20,
         },
       })
         .then((responseJson) => {
@@ -90,7 +90,7 @@ const ResourcesScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={dataSource}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => item.id.toString()}
         ItemSeparatorComponent={ItemSeparatorView}
         renderItem={ItemView}
         ListFooterComponent={renderFooter}
@@ -103,8 +103,11 @@ const ResourcesScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    paddingTop: 0,
     flex: 1,
+    height: 600,
+    margin: 20,
+    backgroundColor: '#ffe'
   },
   itemStyle: {
     padding: 10,

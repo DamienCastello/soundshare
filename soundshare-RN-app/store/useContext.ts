@@ -7,7 +7,7 @@ interface ContextMenuState {
 
 const useContextStore = create<ContextMenuState>()((set) => ({
   isModalOpen: false,
-  setIsModalOpen: (isModalOpen: boolean) => set(() => ({ isModalOpen: !isModalOpen })),
+  setIsModalOpen: (isModalOpen: boolean) => set(() => ({ isModalOpen: !isModalOpen }))
 }))
 
 export { useContextStore }

@@ -1,4 +1,5 @@
 import AboutScreen from './drawerScreens/aboutUs';
+import CreateResourcesForm from './components/ResourcesForm';
 import CustomSidebarMenu from './components/customSidebarMenu';
 import DetailsScreen from './drawerScreens/details';
 import HomeScreen from './drawerScreens/home';

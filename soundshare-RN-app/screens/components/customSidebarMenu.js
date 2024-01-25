@@ -32,14 +32,11 @@ const setIsModalOpen = useContextStore((state) => state.setIsModalOpen);
         <DrawerItemList {...props} />
         <DrawerItem 
             onPress={() => {
-              console.log("check before : ", isModalOpen);
               setIsModalOpen(isModalOpen); // Utilisez la valeur actuelle pour inverser
-              console.log("check after : ", isModalOpen);
-
             }}
             label={() => 
               <Text style={{color: 'black'}}>
-                Partager
+                Share
               </Text>
             }
         />

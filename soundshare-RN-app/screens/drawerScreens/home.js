@@ -7,7 +7,7 @@ const HomeScreen = ({navigation}) => {
   const isModalOpen = useContextStore((state) => state.isModalOpen)
   const setIsOpenModal = useContextStore((state) => state.setIsModalOpen);
 
-
+  //TODO: Refacto to find better way to set modal top of app
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, padding: 16}}>
@@ -28,15 +28,36 @@ const HomeScreen = ({navigation}) => {
               }}>
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                  <Text style={styles.modalText}>Hello World!</Text>
+                <View style={{display: "flex", justifyContent: "flex-end"}}>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => {
-                       //TODO: navigate on entity form after user selection
                         setIsOpenModal(isModalOpen)
                     }}>
-                    <Text style={styles.textStyle}>Hide Modal</Text>
+                    <Text style={styles.textStyle}>X</Text>
                   </Pressable>
+                </View>
+                  <Text style={styles.modalText}>What do you want upload ?</Text>
+                  <View style={{display: 'flex', flexDirection: "row", justifyContent: 'center', alignItems: "center"}}>
+                  <Pressable
+                    style={[styles.button, styles.buttonChoice]}
+                    onPress={() => {
+                       //TODO: navigate on entity form after user selection
+                        navigation.navigate("CreateResourcesScreen");
+                        setIsOpenModal(isModalOpen)
+                    }}>
+                    <Text style={styles.textStyle}>Resource</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.button, styles.buttonChoice]}
+                    onPress={() => {
+                       //TODO: navigate on entity form after user selection
+                        navigation.navigate("CreateTracksScreen");
+                        setIsOpenModal(isModalOpen)
+                    }}>
+                    <Text style={styles.textStyle}>Track</Text>
+                  </Pressable>
+                  </View>
                 </View>
               </View>
             </Modal> : null
@@ -92,12 +113,19 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    margin: 5
   },
   buttonOpen: {
     backgroundColor: '#F194FF',
   },
-  buttonClose: {
+  buttonChoice: {
     backgroundColor: '#2196F3',
+  },
+  buttonClose: {
+    position: 'relative',
+    top: -35,
+    right: -95,
+    backgroundColor: 'gray',
   },
   textStyle: {
     color: 'white',
