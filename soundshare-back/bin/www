@@ -9,7 +9,7 @@ var debug = require('debug')('soundshare-back:server');
 var http = require('http');
 
 // Accepted origins
-const allowOrigins = ['http://localhost:8081'];
+const allowOrigins = ['http://192.168.134.1:8081'];
 
 /**
  * Get port from environment and store in Express.
