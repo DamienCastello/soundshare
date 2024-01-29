@@ -14,6 +14,7 @@ import React, {createRef, useState} from 'react';
 
 import Loader from './components/Loader';
 import axios from 'axios';
+import url from '../utils/url';
 
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
@@ -63,7 +64,7 @@ const RegisterScreen = (props) => {
     //TODO: Encrypt password with JWT
     console.log("user to create (frontside): ", dataToSend)
     
-    axios.post('http://localhost:3000/api/v1/auth/signup/user', dataToSend, { headers: {
+    axios.post(`${url.baseUrl}:${url.portBack}/api/v1/auth/signup/user`, dataToSend, { headers: {
         //Header Defination
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         //TODO: Improve validation

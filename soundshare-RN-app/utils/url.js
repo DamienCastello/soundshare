@@ -1,3 +1,5 @@
 export default {
-    baseUrl : 'http://192.168.25.1:3000/api/v1'
+    baseUrl : 'http://192.168.134.1',
+    portBack: '3000',
+    portFront: '8081'
 };

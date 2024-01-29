@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import url from '../../utils/url';
 
 const ResourcesScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ const ResourcesScreen = ({navigation}) => {
     if (!loading && !isListEnd) {
       console.log('getData');
       setLoading(true);
-      axios('http://localhost:3000/api/v1/resources', {
+      axios(`${url.baseUrl}:${url.portBack}/api/v1/resources`, {
         params: {
           offset: offset,
           limit: 20,

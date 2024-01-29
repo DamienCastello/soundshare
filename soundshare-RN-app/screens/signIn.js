@@ -13,6 +13,7 @@ import React, {createRef, useState} from 'react';
 
 import Loader from './components/Loader';
 import axios from 'axios';
+import url from '../utils/url';
 
 const LoginScreen = ({navigation}) => {
   const [userEmail, setUserEmail] = useState('gamma@gmail.com');
@@ -30,7 +31,7 @@ const LoginScreen = ({navigation}) => {
     //Show Loader
     setLoading(true);
 
-    axios.post('http://localhost:3000/api/v1/auth/signin/user', dataToSend, { headers: {
+    axios.post(`${url.baseUrl}:${url.portBack}/api/v1/auth/signin/user`, dataToSend, { headers: {
       //Header Defination
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       //TODO: Improve validation
@@ -51,7 +52,7 @@ const LoginScreen = ({navigation}) => {
       .catch((error) => {
         //Hide Loader
         setLoading(false);
-        console.error(error);
+        console.error("error on signIn : ", error);
       });
   };
 
