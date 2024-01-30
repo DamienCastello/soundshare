@@ -7,6 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('soundshare-back:server');
 var http = require('http');
+require('dotenv').config()
+
+// Accepted origins
+const allowOrigins = [process.env.HOST_FRONT];
 
 /**
  * Get port from environment and store in Express.
@@ -28,6 +32,24 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+/**
+ * Check origins on request
+ */
+server.on('request', (request, response) => {
+  if (request.headers['origin'] && allowOrigins.includes(request.headers['origin'])) {
+      response.setHeader('Access-Control-Allow-Origin', request.headers['origin']);
+  } else {
+      response.setHeader('Access-Control-Allow-Origin', 'null');
+  }
+
+  if (request.method === 'OPTIONS') {
+      response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Origin, Authorization');
+      response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+
+      return response.end();
+  }
+});
 
 /**
  * Normalize a port into a number, string, or false.
