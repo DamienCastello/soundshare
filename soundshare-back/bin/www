@@ -7,9 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('soundshare-back:server');
 var http = require('http');
+require('dotenv').config()
 
 // Accepted origins
-const allowOrigins = ['http://192.168.134.1:8081'];
+const allowOrigins = [process.env.HOST_FRONT];
 
 /**
  * Get port from environment and store in Express.
