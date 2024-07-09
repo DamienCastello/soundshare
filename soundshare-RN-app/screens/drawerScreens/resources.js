@@ -16,13 +16,12 @@ import url from '../../utils/url';
 const ResourcesScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
-  const [offset, setOffset] = useState(1);
+  const [offset, setOffset] = useState(0);
   const [isListEnd, setIsListEnd] = useState(false);
 
   useEffect(() => getData(), []);
 
   const getData = () => {
-    console.log(offset);
     if (!loading && !isListEnd) {
       console.log('getData');
       setLoading(true);
@@ -33,11 +32,10 @@ const ResourcesScreen = ({navigation}) => {
         },
       })
         .then((responseJson) => {
-          console.log(responseJson);
           if (responseJson.data.resources.length > 0) {
             setDataSource([...dataSource, ...responseJson.data.resources]);
             setLoading(false);
-            setOffset(offset + 1);
+            setOffset(offset + 20);
           } else {
             setIsListEnd(true);
             setLoading(false);
@@ -91,7 +89,7 @@ const ResourcesScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={dataSource}
-        keyExtractor={(item, index) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={ItemSeparatorView}
         renderItem={ItemView}
         ListFooterComponent={renderFooter}

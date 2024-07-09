@@ -11,11 +11,14 @@ import {
 } from 'react-native';
 import React, {createRef, useState} from 'react';
 
+import { useContextStore } from '../store/useContext';
 import Loader from './components/Loader';
 import axios from 'axios';
 import url from '../utils/url';
 
 const LoginScreen = ({navigation}) => {
+  const setSignedUser = useContextStore((state) => state.setSignedUser)
+
   const [userEmail, setUserEmail] = useState('gamma@gmail.com');
   const [userPassword, setUserPassword] = useState('00000000');
   const [loading, setLoading] = useState(false);
@@ -38,6 +41,7 @@ const LoginScreen = ({navigation}) => {
       'Accept': '*/*'
     }})
       .then((responseJson) => {
+        setSignedUser({user: responseJson.data.user, token: responseJson.data.token})
         //Hide Loader
         setLoading(false);
         // If server response message same as Data Matched
