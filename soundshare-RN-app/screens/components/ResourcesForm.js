@@ -5,8 +5,11 @@ import Loader from './Loader';
 import React from 'react';
 import axios from 'axios';
 import url from '../../utils/url';
+import { useContextStore } from '../../store/useContext';
+
 
 const CreateResourcesForm = ({ navigation}) => {
+  const signedUser = useContextStore((state) => state.signedUser)
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
@@ -36,7 +39,8 @@ const CreateResourcesForm = ({ navigation}) => {
     const dataToSend = {
         title: title,
         description: description,
-        image: image
+        image: image,
+        userId: signedUser.user.id
     };
 
     //TODO: Encrypt password with JWT

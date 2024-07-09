@@ -42,7 +42,7 @@ after you can run
 npx sequelize-cli db:create # Run db creation
 npx sequelize-cli db:migrate # Run migrations
 
-node seeds/01_users.js && node seeds/02_resources.js # Run seeds
+node seeds/01_users.js && node seeds/02_resources.js && node seeds/03_genres.js && node seeds/04_tracks.js # Run seeds
 
 nodemon # Start server
 ```
