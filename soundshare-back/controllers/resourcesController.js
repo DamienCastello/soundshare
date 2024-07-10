@@ -30,7 +30,7 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             image: req.body.image,
-            userId: req.body.userId
+            UserId: req.body.UserId
         })
             .then((resource) => { res.json({ resource }); })
             .catch((error) => { res.status(500).json({error}) })
@@ -41,7 +41,7 @@ module.exports = {
                 title: req.body.title,
                 description: req.body.description,
                 image: req.body.image,
-                userId: req.body.userId
+                UserId: req.body.UserId
             })
                 .then((updatedResource) => { res.json({ updatedResource }); })
                 .catch((error) => { res.status(500).json({error}) })

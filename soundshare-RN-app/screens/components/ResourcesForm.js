@@ -40,7 +40,7 @@ const CreateResourcesForm = ({ navigation}) => {
         title: title,
         description: description,
         image: image,
-        userId: signedUser.user.id
+        UserId: signedUser.user.id
     };
 
     //TODO: Encrypt password with JWT

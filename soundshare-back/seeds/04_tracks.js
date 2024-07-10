@@ -9,7 +9,7 @@ const track = Track.create({
     description: faker.lorem.paragraph(),
     image: faker.image.avatar(),
     music: faker.system.fileExt('audio/mpeg'),
-    userId: 1
+    UserId: 1
 })
 .then((track) => { track.addGenre(1) })
 .catch((error) => { console.log(error); })

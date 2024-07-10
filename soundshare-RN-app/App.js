@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 
 import CreateResourcesForm from './screens/components/ResourcesForm';
+import CreateTracksForm from './screens/components/TracksForm';
+import TrackShow from './screens/components/trackShow';
 import DrawerNavigationRoutes from './screens/DrawerNavigationRoutes';
 import { NavigationContainer } from '@react-navigation/native';
 import SignInScreen from './screens/signIn';
@@ -72,6 +74,18 @@ const App = () => {
         <Stack.Screen
           name="CreateResourcesScreen"
           component={CreateResourcesForm}
+          // Hiding header for Navigation Drawer
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name="CreateTracksScreen"
+          component={CreateTracksForm}
+          // Hiding header for Navigation Drawer
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name="TrackShow"
+          component={TrackShow}
           // Hiding header for Navigation Drawer
           options={{headerShown: true}}
         />

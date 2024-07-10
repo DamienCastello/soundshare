@@ -42,7 +42,6 @@ const HomeScreen = ({navigation}) => {
                   <Pressable
                     style={[styles.button, styles.buttonChoice]}
                     onPress={() => {
-                       //TODO: navigate on entity form after user selection
                         navigation.navigate("CreateResourcesScreen");
                         setIsOpenModal(isModalOpen)
                     }}>
