@@ -2,18 +2,20 @@ import {
   ActivityIndicator,
   Dimensions,
   FlatList,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   View
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import axios from 'axios';
 import url from '../../utils/url';
 
-const ResourcesScreen = ({navigation}) => {
+const TracksScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -21,19 +23,28 @@ const ResourcesScreen = ({navigation}) => {
 
   useEffect(() => getData(), []);
 
+  useFocusEffect(
+    useCallback(() => {
+      setOffset(0);
+      setIsListEnd(false);
+      setDataSource([]);
+      getData();
+    }, [])
+  );
+
   const getData = () => {
     if (!loading && !isListEnd) {
       console.log('getData');
       setLoading(true);
-      axios(`${url.baseUrl}:${url.portBack}/api/v1/resources`, {
+      axios(`${url.baseUrl}:${url.portBack}/api/v1/tracks`, {
         params: {
           offset: offset,
           limit: 20,
         },
       })
         .then((responseJson) => {
-          if (responseJson.data.resources.length > 0) {
-            setDataSource([...dataSource, ...responseJson.data.resources]);
+          if (responseJson.data.tracks.length > 0) {
+            setDataSource([...dataSource, ...responseJson.data.tracks]);
             setLoading(false);
             setOffset(offset + 20);
           } else {
@@ -60,12 +71,15 @@ const ResourcesScreen = ({navigation}) => {
 
   const ItemView = ({ item }) => {
     return (
-      <Text
-        key={item.id}
-        style={styles.itemStyle}
-        onPress={() => getItem(item)}>
-        {item.id}.{item.title.toUpperCase()}
-      </Text>
+      <Pressable onPress={() => getItem(item)}>
+        <View key={item.id}
+              style={styles.view}
+              >
+          <Text style={styles.itemStyle}>{item.User.name}</Text>
+          <Text style={styles.itemStyle}>{item.title.toUpperCase()}</Text>
+        </View>
+      </Pressable>
+      
     );
   };
 
@@ -82,7 +96,10 @@ const ResourcesScreen = ({navigation}) => {
   };
 
   const getItem = (item) => {
-    navigation.navigate('Resource show')
+    navigation.navigate('TrackShow', {
+      musicId: item.id,
+      artist: item.User.name
+    })
   };
 
   return (
@@ -108,6 +125,10 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: '#ffe'
   },
+  view: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
   itemStyle: {
     padding: 10,
     fontSize: 18,
@@ -120,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResourcesScreen;
+export default TracksScreen;

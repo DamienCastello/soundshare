@@ -3,8 +3,10 @@ const Genre = models.Genre;
 
 const { faker } = require('@faker-js/faker');
 
-Genre.create({
-    name: faker.music.genre(),
-})
-.then((genre) => { console.log(genre); })
-.catch((error) => { console.log(error); })
+for(let i = 0; i < 5; i++){
+    Genre.create({
+        name: faker.music.genre(),
+    })
+    .then((genre) => { console.log(genre); })
+    .catch((error) => { console.log(error); })
+}

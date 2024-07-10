@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Genre.belongsToMany(models.Track, { through: 'GenreTracks' });
+      const Track_Genres = sequelize.define('Track_Genres');
+      Genre.belongsToMany(models.Track, { through: 'Track_Genres', foreignKey: 'GenreId', otherKey: 'TrackId'});
     }
   }
   Genre.init({

@@ -14,8 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Track_Genres.init({
-    TrackId: DataTypes.INTEGER,
-    GenreId: DataTypes.INTEGER
+    TrackId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Tracks',
+        key: 'id'
+      }
+    },
+    GenreId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Genres',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Track_Genres',

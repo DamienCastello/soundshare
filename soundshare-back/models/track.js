@@ -11,15 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       const Track_Genres = sequelize.define('Track_Genres');
-      Track.belongsTo(models.User);
-      Track.belongsToMany(models.Genre, { through: Track_Genres });
+      Track.belongsTo(models.User, { foreignKey: 'UserId' });
+      Track.belongsToMany(models.Genre, { through: 'Track_Genres' , foreignKey: 'TrackId', otherKey: 'GenreId'});
     }
   }
   Track.init({
     title: DataTypes.STRING,
     description: DataTypes.TEXT('long'),
     image: DataTypes.STRING,
-    music: DataTypes.STRING
+    music: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Track',

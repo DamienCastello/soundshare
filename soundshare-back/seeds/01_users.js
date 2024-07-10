@@ -4,12 +4,12 @@ const User = models.User;
 const { faker } = require('@faker-js/faker');
 
 User.create({
-    name: faker.person.lastName(),
-    email: faker.internet.email(),
-    password: 'test1234',
+    name: 'Gamma',
+    email: 'gamma@gmail.com',
+    password: '$2b$10$17fD0IHFdS2.O45DNgmDkuBVOjS7YxsNKSWNvvpIsfCzTrvjDKONa',
     isAdmin: false,
-    isArtist: false,
-    avatar: faker.internet.avatar()
+    isArtist: true,
+    avatar:  null
 })
 .then((user) => { console.log(user); })
 .catch((error) => { console.log(error); })

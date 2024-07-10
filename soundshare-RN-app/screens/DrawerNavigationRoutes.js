@@ -6,7 +6,7 @@ import HomeScreen from './drawerScreens/home';
 import NavigationDrawerHeader from './components/navigationDrawerHeader';
 import React from 'react';
 import ResourcesScreen from './drawerScreens/resources';
-import SettingsScreen from './drawerScreens/settings';
+import TracksScreen from './drawerScreens/tracks';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
@@ -35,9 +35,9 @@ const DrawerNavigatorRoutes = (props) => {
         component={ResourcesScreen}
       />
       <Drawer.Screen
-        name="settingScreen"
-        options={{drawerLabel: 'Setting Screen', headerStyle: {backgroundColor: '#647a8f'}}}
-        component={SettingsScreen}
+        name="tracksScreen"
+        options={{drawerLabel: 'Tracks Screen', headerStyle: {backgroundColor: '#647a8f'}}}
+        component={TracksScreen}
       />
       <Drawer.Screen
         name="aboutScreen"
