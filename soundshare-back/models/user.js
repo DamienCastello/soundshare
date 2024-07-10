@@ -11,9 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Resource, {
-        foreignKey: 'userId'
+        foreignKey: 'UserId'
       });
-      User.hasMany(models.Track);
+      User.hasMany(models.Track, {
+        foreignKey: 'UserId'
+      });
     }
   }
   User.init({

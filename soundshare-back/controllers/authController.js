@@ -37,7 +37,7 @@ module.exports = {
                     });
                 }
             })
-            .catch((err) => { console.log("error on findUser", err) })
+            .catch((err) => { console.log("error on findUser", err, err.message) })
 
     },
     signUpUser: function (req, res, next) {

@@ -28,7 +28,6 @@ const LoginScreen = ({navigation}) => {
 
   const handleSubmitPress = () => {
     setErrortext('');
-    setLoading(true);
     let dataToSend = {email: userEmail, password: userPassword};
     
     //Show Loader
