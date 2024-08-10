@@ -30,8 +30,8 @@ first run `npm install`
 
 add `.env` file in the backend folder of project and add following lines
 ```text
-DB_USERNAME='root'
-DB_PASSWORD=''
+DB_USERNAME='admin'
+DB_PASSWORD='azerty'
 DB_NAME='soundshare_db_dev'
 JWT_SECRET='s0undshare'
 DB_HOSTNAME=127.0.0.1

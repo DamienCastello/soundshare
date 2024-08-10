@@ -23,6 +23,9 @@ module.exports = {
           len: [3, 20]
         }
       },
+      resourceLink: {
+        type: Sequelize.STRING
+      },
       image: {
         type: Sequelize.STRING
       },

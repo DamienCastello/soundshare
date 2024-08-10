@@ -12,7 +12,7 @@ import {
 import React, {createRef, useState} from 'react';
 
 import { useContextStore } from '../store/useContext';
-import Loader from './components/Loader';
+import Loader from './Loader';
 import axios from 'axios';
 import url from '../utils/url';
 

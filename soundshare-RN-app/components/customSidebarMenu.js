@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 
 import React from 'react';
-import { useContextStore } from '../../store/useContext';
+import { useContextStore } from '../store/useContext';
 
 const CustomSidebarMenu = (props) => {
 const isModalOpen = useContextStore((state) => state.isModalOpen)

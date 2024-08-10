@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 
-import CreateResourcesForm from './screens/components/ResourcesForm';
-import CreateTracksForm from './screens/components/TracksForm';
-import TrackShow from './screens/components/trackShow';
+import CreateResourcesForm from './screens/drawerScreens/ResourcesForm';
+import ResourceShow from './screens/resourceShow';
+import CreateTracksForm from './screens/drawerScreens/TracksForm';
+import TrackShow from './screens/trackShow';
 import DrawerNavigationRoutes from './screens/DrawerNavigationRoutes';
 import { NavigationContainer } from '@react-navigation/native';
 import SignInScreen from './screens/signIn';
@@ -75,19 +76,39 @@ const App = () => {
           name="CreateResourcesScreen"
           component={CreateResourcesForm}
           // Hiding header for Navigation Drawer
-          options={{headerShown: true}}
+          options={{headerShown: true, headerStyle: {
+            backgroundColor: '#3f87a6',
+          },
+          headerTintColor: '#fff',
+          }}
         />
         <Stack.Screen
           name="CreateTracksScreen"
           component={CreateTracksForm}
           // Hiding header for Navigation Drawer
-          options={{headerShown: true}}
+          options={{headerShown: true, headerStyle: {
+            backgroundColor: '#3f87a6',
+          },
+          headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="ResourceShow"
+          component={ResourceShow}
+          options={{headerShown: true, headerStyle: {
+            backgroundColor: '#3f87a6',
+          },
+          headerTintColor: '#fff',
+          }}
         />
         <Stack.Screen
           name="TrackShow"
           component={TrackShow}
-          // Hiding header for Navigation Drawer
-          options={{headerShown: true}}
+          options={{headerShown: true, headerStyle: {
+            backgroundColor: '#3f87a6',
+          },
+          headerTintColor: '#fff',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
