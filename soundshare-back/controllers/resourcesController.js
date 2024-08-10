@@ -14,14 +14,12 @@ module.exports = {
             .catch((error) => { res.status(500).json({error}) })
     },
     show: function(req, res, next) {
-        Resource.findAll({
-            id: req.query.id,
-            include: [models.User],
-        })
-        .then((resources) => {
-            res.json({ resources });
+        Resource.findByPk(req.params.id)
+        .then((resource) => {
+            res.json({ resource });
         })
         .catch((error) => {
+            console.error("Message Error fetching tracks: ", error.message);
             res.status(500).json({ error });
         });
     },
@@ -29,6 +27,7 @@ module.exports = {
         Resource.create({
             title: req.body.title,
             description: req.body.description,
+            resourceLink: req.body.resourceLink,
             image: req.body.image,
             UserId: req.body.UserId
         })
@@ -40,6 +39,7 @@ module.exports = {
             .then((resource) => { resource.update({
                 title: req.body.title,
                 description: req.body.description,
+                resourceLink: req.body.resourceLink,
                 image: req.body.image,
                 UserId: req.body.UserId
             })

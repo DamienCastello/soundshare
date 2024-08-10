@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import React, {createRef, useState} from 'react';
 
-import Loader from './components/Loader';
+import Loader from './Loader';
 import axios from 'axios';
 import url from '../utils/url';
 

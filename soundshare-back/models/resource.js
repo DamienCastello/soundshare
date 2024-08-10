@@ -16,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   Resource.init({
     title: DataTypes.STRING,
     description: DataTypes.STRING,
-    image: DataTypes.STRING
+    resourceLink: DataTypes.STRING,
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   }, {
     sequelize,
     modelName: 'Resource',

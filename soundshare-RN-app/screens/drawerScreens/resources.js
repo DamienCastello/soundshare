@@ -8,7 +8,9 @@ import {
   Text,
   View
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 import axios from 'axios';
 import url from '../../utils/url';
@@ -20,6 +22,15 @@ const ResourcesScreen = ({navigation}) => {
   const [isListEnd, setIsListEnd] = useState(false);
 
   useEffect(() => getData(), []);
+
+  useFocusEffect(
+    useCallback(() => {
+      setOffset(0);
+      setIsListEnd(false);
+      setDataSource([]);
+      getData();
+    }, [])
+  );
 
   const getData = () => {
     if (!loading && !isListEnd) {
@@ -82,7 +93,10 @@ const ResourcesScreen = ({navigation}) => {
   };
 
   const getItem = (item) => {
-    navigation.navigate('Resource show')
+    navigation.navigate('ResourceShow', {
+      resourceId: item.id,
+      user: item.User.name
+    })
   };
 
   return (

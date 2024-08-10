@@ -5,9 +5,10 @@ const { faker } = require('@faker-js/faker');
 
 for(let i = 0; i < 1; i++){
     Resource.create({
-        title: faker.lorem.sentence(),
-        description: faker.lorem.paragraph(),
-        image: faker.image.avatar(),
+        title: 'Tuto Acid mélodique',
+        description: 'Merci Skone ! Bien utile !',
+        resourceLink: 'https://youtu.be/6dIChqYavYw?si=3LRDECD3TVuY-EPB',
+        image: 'https://img.youtube.com/vi/6dIChqYavYw/hqdefault.jpg',
         UserId: 1
     })
     .then((resource) => { console.log(resource); })
